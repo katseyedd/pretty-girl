@@ -376,7 +376,7 @@ function drawText() {
 
 
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["and I can't wait to spend all the time with you", "our love is interstellar"], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
+            drawTextWithLineBreaks(["and I can't wait to spend all the time with you", "Our love is interstellar"], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
         } else {
             context.fillText("and I can't wait to spend all the time in the world with you. Our love is interstellar", canvas.width/2, (canvas.height/2 + 50));
         }
