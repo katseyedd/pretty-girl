@@ -32,3 +32,79 @@ canvas {
     background-color: #1f1faa;
     color: #eee;
 }
+
+.envelope {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    cursor: pointer;
+    transition: all 0.6s ease-out;
+}
+
+.envelope-body {
+    width: 300px;
+    height: 200px;
+    background: white;
+    border: 3px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.envelope-body:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(255, 105, 180, 0.3);
+}
+
+.envelope-flap {
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #f5f5f5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px 5px 0 0;
+    transition: transform 0.4s ease-out;
+}
+
+.envelope-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ff69b4;
+    font-size: 18px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.envelope.opened {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.envelope.opened .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+@media (max-width: 600px) {
+    .envelope-body {
+        width: 250px;
+        height: 170px;
+    }
+    
+    .envelope-flap {
+        border-left: 125px solid transparent;
+        border-right: 125px solid transparent;
+        border-top: 85px solid #f5f5f5;
+    }
+}
