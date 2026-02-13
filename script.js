@@ -17,7 +17,11 @@ envelope.addEventListener("click", function() {
 
 envelope.addEventListener("touchstart", function(e) {
     e.preventDefault();
-    envelope.click();
+    e.stopPropagation();
+    if (!isEnvelopeOpen) {
+        isEnvelopeOpen = true;
+        envelope.classList.add("opened");
+    }
 });
 
 // Purple space theme - more purple hues
