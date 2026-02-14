@@ -17,7 +17,11 @@ envelope.addEventListener("click", function() {
 
 envelope.addEventListener("touchstart", function(e) {
     e.preventDefault();
-    envelope.click();
+    e.stopPropagation();
+    if (!isEnvelopeOpen) {
+        isEnvelopeOpen = true;
+        envelope.classList.add("opened");
+    }
 });
 
 // Purple space theme - more purple hues
@@ -130,8 +134,13 @@ var moon = {
     radius: 250,
     angle: 0,
     opacity: 0.4
-
 };
+
+// Flowers setup
+var flowersImage = new Image();
+flowersImage.src = "public/flowers.png";
+var flowersOpacity = 0;
+var flowersShowing = false;
 
 var frameNumber = 0;
 var opacity = 0;
@@ -708,6 +717,42 @@ function drawText() {
      context.shadowOffsetY = 0;
 }
 
+function drawFlowers() {
+    // Start showing flowers after all text is done (frameNumber >= 5250)
+    if (frameNumber >= 5250 && !flowersShowing) {
+        flowersShowing = true;
+    }
+    
+    if (flowersShowing) {
+        // Fade in the flowers
+        if (flowersOpacity < 1) {
+            flowersOpacity += 0.015;
+        }
+        
+        // Draw flowers at bottom of screen with fade-in
+        context.save();
+        context.globalAlpha = Math.min(flowersOpacity, 1);
+        
+        // Calculate dimensions to keep aspect ratio
+        var maxWidth = canvas.offsetWidth * 0.8;
+        var maxHeight = canvas.offsetHeight * 0.35;
+        var imgAspectRatio = flowersImage.width / flowersImage.height;
+        var displayWidth = maxWidth;
+        var displayHeight = displayWidth / imgAspectRatio;
+        
+        if (displayHeight > maxHeight) {
+            displayHeight = maxHeight;
+            displayWidth = displayHeight * imgAspectRatio;
+        }
+        
+        var x = (canvas.offsetWidth - displayWidth) / 2;
+        var y = canvas.offsetHeight - displayHeight - 20;
+        
+        context.drawImage(flowersImage, x, y, displayWidth, displayHeight);
+        context.restore();
+    }
+}
+
 function draw() {
     drawPurpleBackground();
     
@@ -719,6 +764,7 @@ function draw() {
     drawNebula();
     drawPlanets();
     drawSparkles();
+    drawFlowers();
     
     // Only draw text and increment frame if envelope is open
     if (isEnvelopeOpen) {
