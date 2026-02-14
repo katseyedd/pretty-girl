@@ -723,7 +723,7 @@ function drawFlowers() {
         flowersShowing = true;
     }
     
-    if (flowersShowing && flowersImage.width > 0 && flowersImage.height > 0) {
+    if (flowersShowing) {
         // Fade in the flowers
         if (flowersOpacity < 1) {
             flowersOpacity += 0.015;
@@ -734,8 +734,8 @@ function drawFlowers() {
         context.globalAlpha = Math.min(flowersOpacity, 1);
         
         // Calculate dimensions to keep aspect ratio
-        var maxWidth = canvas.width * 0.85;
-        var maxHeight = canvas.height * 0.35;
+        var maxWidth = canvas.offsetWidth * 0.8;
+        var maxHeight = canvas.offsetHeight * 0.35;
         var imgAspectRatio = flowersImage.width / flowersImage.height;
         var displayWidth = maxWidth;
         var displayHeight = displayWidth / imgAspectRatio;
@@ -745,8 +745,8 @@ function drawFlowers() {
             displayWidth = displayHeight * imgAspectRatio;
         }
         
-        var x = (canvas.width - displayWidth) / 2;
-        var y = canvas.height - displayHeight - 30;
+        var x = (canvas.offsetWidth - displayWidth) / 2;
+        var y = canvas.offsetHeight - displayHeight - 20;
         
         context.drawImage(flowersImage, x, y, displayWidth, displayHeight);
         context.restore();
