@@ -41,7 +41,6 @@ canvas {
     z-index: 100;
     cursor: pointer;
     transition: all 0.6s ease-out;
-    max-width: 95vw;
 }
 
 .envelope-body {
@@ -53,7 +52,6 @@ canvas {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     position: relative;
     transition: transform 0.3s ease-in-out;
-    box-sizing: border-box;
 }
 
 .envelope-body:hover {
@@ -82,15 +80,13 @@ canvas {
     transform: translate(-50%, -50%);
     color: #ff69b4;
     font-size: 18px;
-    font-family: "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-weight: bold;
     text-align: center;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
     width: 85%;
-    line-height: 1.5;
-    word-break: break-word;
-    letter-spacing: 0.5px;
+    line-height: 1.4;
 }
 
 .envelope.opened {
@@ -105,57 +101,53 @@ canvas {
 }
 
 @media (max-width: 768px) {
-    .envelope {
-        top: 45%;
-    }
-
     .envelope-body {
-        width: 90vw;
-        max-width: 280px;
-        height: auto;
-        aspect-ratio: 280 / 185;
-        min-height: 165px;
+        width: 280px;
+        height: 185px;
     }
-
-    /* Simplify flap borders for mobile */
+    
     .envelope-flap {
-        border-left: 80px solid transparent;
-        border-right: 100px solid transparent;
-        border-top: 52px solid #f5f5f5;
-        /* Adjust these values as needed for better fit */
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 92px solid #f5f5f5;
     }
-
+    
     .envelope-text {
-        font-size: 14px;
-        line-height: 1.4;
-        letter-spacing: 0.3px;
-        width: 88%;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 600px) {
-    .envelope {
-        top: 43%;
-    }
-
     .envelope-body {
-        width: 85vw;
-        max-width: 260px;
-        aspect-ratio: 240 / 160;
-        min-height: 145px;
+        width: 240px;
+        height: 160px;
     }
-
-    /* Adjust flap borders for smaller screens */
+    
     .envelope-flap {
-        border-left: 70px solid transparent;
-        border-right: 70px solid transparent;
-        border-top: 45px solid #f5f5f5;
+        border-left: 120px solid transparent;
+        border-right: 120px solid transparent;
+        border-top: 80px solid #f5f5f5;
     }
-
+    
     .envelope-text {
-        font-size: 13px;
-        line-height: 1.35;
-        letter-spacing: 0.2px;
-        width: 88%;
+        font-size: 14px;
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 400px) {
+    .envelope-body {
+        width: 200px;
+        height: 135px;
+    }
+    
+    .envelope-flap {
+        border-left: 100px solid transparent;
+        border-right: 100px solid transparent;
+        border-top: 67px solid #f5f5f5;
+    }
+    
+    .envelope-text {
+        font-size: 12px;
     }
 }
