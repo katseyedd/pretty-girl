@@ -17,11 +17,7 @@ envelope.addEventListener("click", function() {
 
 envelope.addEventListener("touchstart", function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    if (!isEnvelopeOpen) {
-        isEnvelopeOpen = true;
-        envelope.classList.add("opened");
-    }
+    envelope.click();
 });
 
 // Purple space theme - more purple hues
@@ -134,6 +130,7 @@ var moon = {
     radius: 250,
     angle: 0,
     opacity: 0.4
+
 };
 
 var frameNumber = 0;
